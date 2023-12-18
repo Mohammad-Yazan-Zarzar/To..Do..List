@@ -15,22 +15,25 @@ import MaterialUISwitch from './switch';
 
 const BoxStyle=styled(Box)`
     width: 100% !important;
-    max-height: 8px !important;
-    margin-bottom: 50px !important;
+    /* max-height: 8px !important; */
+    margin-bottom: 14px !important;
     border-bottom-right-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
-
+    /* margin: 0 !important; */
     /* overflow-y: hidden; */
     /* background-color: azure !important; */
 `
 const AppBarStyle=styled(AppBar)`
     background-image: linear-gradient(to right, ${props=>props.mode.HeadeBackgroundColorLeft}, ${props=>props.mode.HeadeBackgroundColorRight})!important;
     z-index: -1;
-    position: relative;
+    /* position: relative; */
     border-bottom-right-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
     max-height: 55px !important;
    box-shadow: 0 1px 2px 0 ${props=>props.mode.bodyBoxShadow}, 0 3px 10px 0 ${props=>props.mode.bodyBoxShadow} !important;
+    
+    /* overflow-y: hidden; */
+
 
 
     /* overflow-y: hidden; */

@@ -25,6 +25,12 @@ const FormAddStyle=styled.div`
 `
 const TextFieldStyle=styled(TextField)`
   width: 90% !important;
+  color: blue !important;
+  /* background-color: #fff; */
+  color:#fff !important;
+  border-bottom: 2px solid silver !important;
+
+
   
 `
 const FormStyle=styled.form`
@@ -71,6 +77,7 @@ const InputTime=styled.input`
     outline: none;
     border: none;
     /* width: 50%; */
+    color: silver;
     cursor: pointer;
     background-color: transparent;
     &:active~Label{
@@ -83,7 +90,7 @@ const ButtonStyle=styled.button`
     width: 100px;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: #fff;
+    background-color: ${props=>props.mode.bacgroundColor};
     color: ${props=>props.mode.HeadeBackgroundColorRight};
     border: 1px solid ${props=>props.mode.HeadeBackgroundColorRight};
     border-radius: 5px;

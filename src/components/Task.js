@@ -18,7 +18,7 @@ const TaskStyle=styled.div`
     align-items: center;
     position: relative;
     z-index: 1;
-    background-color: #fff;
+    background-color: ${props=>props.mode.bacgroundColor};
     transition: 0.2s;
     /* padding-left: 2px; */
     /* padding-right: 2px; */

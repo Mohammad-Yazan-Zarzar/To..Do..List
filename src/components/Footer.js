@@ -12,12 +12,17 @@ const FooterStyle=styled.div`
   /* color: var(--mainColor); */
   /* color: #fff; */
   color: ${props => props.mode.colorLogin};
-  
-  padding: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: #222; */
+
+  /* padding: 5px; */
   text-align: center;
   position: static;
   width: 100%;
-  bottom: 0px;
+  /* bottom: 0px; */
   overflow-x: hidden;
   overflow-y: hidden;
 
@@ -31,6 +36,7 @@ const Links=styled.div`
   text-align: center;
   align-items: center;
   justify-content: center;
+  /* background-color: #fff; */
 `
 const Link=styled.a`
     text-decoration: none;
@@ -48,20 +54,21 @@ const Footer = () => {
 
   return (
     <FooterStyle mode={user[0]}>
-      <div className='row container'>
-        <div className='col-12 col-md-6'>
-          <h5>contact us</h5>
+      {/* <div className='row container'> */}
+        {/* <div className='col-12 col-md-6'> */}
+          <p>contact us</p>
           <Links>
             <Link mode={user[0]} href='https://www.facebook.com/yzane.zarzar' ><BsFacebook></BsFacebook></Link>
             <Link mode={user[0]} href="mailto:yazanzarzar98@gmail.com?subject='subject text'"><GrMail></GrMail></Link>
             <Link mode={user[0]} href="tel:963981386862"><BsTelephoneForward></BsTelephoneForward></Link>
           </Links>
-        </div>
+          <br></br>
+        {/* </div> */}
         {/* <div className='col-12 col-md-6'>
           <h5>We hope you have a great experience</h5>
         </div> */}
 
-      </div>
+      {/* </div> */}
     </FooterStyle>
   )
 }
