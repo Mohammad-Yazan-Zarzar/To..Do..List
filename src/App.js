@@ -6,6 +6,7 @@ import  Login  from './components/Login';
 import Bar from './components/Bar'
 import Footer from './components/Footer'
 import { lightMode } from './Theme';
+import { nightMode } from './Theme';
 import { useState,createContext, useContext ,useEffect} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {db} from './firebase-config';
@@ -37,9 +38,23 @@ function App() {
   const [tasks,setTasks]=useState(JSON.parse(localStorage.getItem('tasks')))
   const [runLoader,setRunLoader]=useState(true)
   const [account,setAccount]=useState(JSON.parse(localStorage.getItem('User'))||'')
-  // const [uid,setUid]=useState('')
-
   
+  // const [uid,setUid]=useState('')
+const changeMode=()=>{
+  if(pageMode===lightMode)
+    setPageMode(nightMode)
+  else setPageMode(lightMode)
+}
+
+  const getUsersData = async () => {
+    
+    const q=query(UsersCollectionRef,where("uid","==",account['uid']||''))
+    const data = await getDocs(q)
+    // console.log(data.docs)
+    setTasks(data.docs.map((elem) => ({ ...elem.data(), id: elem.id })))
+    setRunLoader(false)
+
+  }
   
   // const[st,useSt]=useState('Hello')
   // useEffect(()=>{
@@ -67,15 +82,7 @@ function App() {
 useEffect(() => {
   setRunLoader(true)
   
-  const getUsersData = async () => {
-    
-    const q=query(UsersCollectionRef,where("uid","==",account['uid']||''))
-    const data = await getDocs(q)
-    // console.log(data.docs)
-    setTasks(data.docs.map((elem) => ({ ...elem.data(), id: elem.id })))
-    setRunLoader(false)
-
-  }
+  
 
   getUsersData()
   console.log(account['uid'])
@@ -107,6 +114,7 @@ useEffect(() => {
       const uid=account['uid']
       const taskStatus=''
       await addDoc(UsersCollectionRef, {taskID,taskText,taskTime,taskStatus,uid})
+      getUsersData()
 
 
     }
@@ -143,7 +151,7 @@ useEffect(() => {
  
 
   return (
-    <UserContext.Provider value={[pageMode ,tasks,setTasks,addTask,deleteTask,runLoader,setRunLoader,account,setAccount,updateTask]}>
+    <UserContext.Provider value={[pageMode ,tasks,setTasks,addTask,deleteTask,runLoader,setRunLoader,account,setAccount,updateTask,changeMode]}>
       <AppStyle mode={pageMode}>
       <BrowserRouter>
           <Bar></Bar>

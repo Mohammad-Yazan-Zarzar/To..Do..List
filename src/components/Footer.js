@@ -57,9 +57,9 @@ const Footer = () => {
             <Link mode={user[0]} href="tel:963981386862"><BsTelephoneForward></BsTelephoneForward></Link>
           </Links>
         </div>
-        <div className='col-12 col-md-6'>
+        {/* <div className='col-12 col-md-6'>
           <h5>We hope you have a great experience</h5>
-        </div>
+        </div> */}
 
       </div>
     </FooterStyle>
