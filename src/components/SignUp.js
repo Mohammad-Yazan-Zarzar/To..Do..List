@@ -235,7 +235,7 @@ const SignUp = () => {
   return (
     <LoginPage mode={user[0]}>
         <H2 mode={user[0]}>Sign Up</H2>
-        <Form onSubmit={handleSignUp}>
+        <Form onSubmit={()=>handleSignUp}>
          
           <UserBox >
             <Input type='email' name='' required mode={user[0]} value={email}  onChange={(e) => setEmail(e.target.value)} ></Input>

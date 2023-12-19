@@ -93,18 +93,16 @@ const TextStyle=styled.div`
 `
 const Task = (props) => {
   const user = useContext(UserContext);
-  const [line,setLine]=useState('none')
+  const [line,setLine]=useState(props.task.taskStatus)
   useEffect(()=>{
     console.log('Status',props.task.taskStatus)
-    if(props.task.taskStatus==='done'){
-      setLine('line-through')
-    }
+    // setLine(props.task.taskStatus)
   },[])
 
   return (
     <TaskStyle mode={user[0]}  >
       
-        <TaskText line={line}>
+        <TaskText line={props.task.taskStatus}>
             <TimeStyle>{props.task.taskTime}</TimeStyle>
             <TextStyle>{props.task.taskText}</TextStyle>
 

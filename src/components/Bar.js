@@ -12,6 +12,9 @@ import { Outlet, Link, json } from "react-router-dom";
 import ss from '../images/logoToDoList.png'
 import styled from 'styled-components';
 import MaterialUISwitch from './switch';
+import {app} from '../firebase-config';
+import { signOut,getAuth } from 'firebase/auth';
+
 
 const BoxStyle=styled(Box)`
     width: 100% !important;
@@ -116,6 +119,12 @@ export default function ButtonAppBar() {
    const[display,setDisplaye]=useState('none')
    const[accountStyle,setAccountStyle]=useState(user[0].accountBackGround)
    const[accountShadow,setAccountShadow]=useState('none')
+   const auth=getAuth()
+   const handleLogout =() => {
+    signOut(auth);
+    localStorage.removeItem('User')
+    user[8]('')
+    }
 
   return (
     <>
@@ -157,7 +166,7 @@ export default function ButtonAppBar() {
             </Avatar>
             <MenueStyle mode={display}>
               <MaterialUISwitch onClick={user[10]}></MaterialUISwitch>
-              <div>Logout</div>
+              <div onClick={()=>handleLogout()}>Logout</div>
 
 
             </MenueStyle>

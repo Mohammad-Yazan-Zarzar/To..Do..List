@@ -99,20 +99,21 @@ useEffect(() => {
     // preventDefault()
     // console.log('submit')
     // user[0]()
+    const taskStatus=''
+
     if(tasks!=null){
       // let taskID=tasks.length+1
 
-      setTasks([...tasks,{taskID,taskText,taskTime}])
+      setTasks([...tasks,{taskID,taskText,taskTime,taskStatus}])
 
     }
     else{
-      setTasks([{taskText,taskTime,taskID}])
+      setTasks([{taskText,taskTime,taskID,taskStatus}])
 
 
     }
     if(account!=null){
       const uid=account['uid']
-      const taskStatus=''
       await addDoc(UsersCollectionRef, {taskID,taskText,taskTime,taskStatus,uid})
       getUsersData()
 
@@ -127,6 +128,8 @@ useEffect(() => {
     
   }
   const deleteTask=async(taskID)=>{
+    setRunLoader(true)
+
     console.log(tasks)
     setTasks(tasks.filter(task=>task.id!=taskID))
     // const q1=query(UsersCollectionRef,where("taskId","==", toString(taskID)))
@@ -135,18 +138,22 @@ useEffect(() => {
     await deleteDoc(doc(db,"backenddata",taskID))
 
     console.log(taskID)
+    getUsersData()
   }
   const updateTask=async(taskID)=>{
     // console.log(tasks)
     // setTasks(tasks.filter(task=>task.id!=taskID))
     // const q1=query(UsersCollectionRef,where("taskId","==", toString(taskID)))
+    setRunLoader(true)
     
 
     await updateDoc(doc(db,"backenddata",taskID),{
-      taskStatus:'done'
+      taskStatus:'line-through'
     })
 
     console.log('Done',taskID)
+    getUsersData()
+
   }
  
 
