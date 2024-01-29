@@ -87,6 +87,9 @@ const Avatar=styled.div`
 
 
 `
+const LogoutItem=styled.div`
+  cursor: pointer;
+`
 const AccountBtn=styled.div`
   display: flex;
   flex-direction:column;
@@ -166,7 +169,7 @@ export default function ButtonAppBar() {
             </Avatar>
             <MenueStyle mode={display}>
               <MaterialUISwitch onClick={user[10]}></MaterialUISwitch>
-              <div onClick={()=>handleLogout()}>Logout</div>
+              <LogoutItem onClick={()=>handleLogout()}>Logout</LogoutItem>
 
 
             </MenueStyle>

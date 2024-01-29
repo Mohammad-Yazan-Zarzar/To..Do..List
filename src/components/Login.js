@@ -83,6 +83,7 @@ const H2=styled.h2`
   color: ${props => props.mode.colorLogin};
 `
 const A=styled.button`
+  border:none;
   /* background-color: #44cfcb; */
   background-color: transparent;
   padding: 10px 20px;

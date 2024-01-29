@@ -82,6 +82,7 @@ const H2=styled.h2`
 `
 const A=styled.button`
   /* background-color: #44cfcb; */
+  border: none;
   background-color: transparent;
   padding: 10px 20px;
   width: fit-content;
@@ -96,6 +97,7 @@ const A=styled.button`
   transition: 0.8s;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
   &:hover{
     background-color: #44cfcb;
     color: #fff;
@@ -201,6 +203,7 @@ const SignUp = () => {
   const user = useContext(UserContext);
   // /////////Sign Up with Firebase
 
+  const [errorMsg, setError] = useState('');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -210,6 +213,8 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    console.log('handle is begin')
+    
     await createUserWithEmailAndPassword(auth,email, password)
       .then((userCredential) => {
     // Signed in 
@@ -225,8 +230,8 @@ const SignUp = () => {
       // Handle login errors
       const errorCode = error.code
       const errorMessage = error.message
-      console.log(errorMessage)
-      /* setError(errorMessage) */
+      console.log("Error",errorMessage)
+      setError(error.message)
     });
   }
 
@@ -235,7 +240,10 @@ const SignUp = () => {
   return (
     <LoginPage mode={user[0]}>
         <H2 mode={user[0]}>Sign Up</H2>
-        <Form onSubmit={()=>handleSignUp}>
+        <Form onSubmit={(e)=>{
+          e.preventDefault()
+          handleSignUp(e)
+        }}>
          
           <UserBox >
             <Input type='email' name='' required mode={user[0]} value={email}  onChange={(e) => setEmail(e.target.value)} ></Input>
@@ -244,9 +252,19 @@ const SignUp = () => {
           </UserBox>
           <UserBox >
             {/* <input type="password" name="" required=""> */}
-            <Input type='password' name='' required mode={user[0]} value={password} onChange={(e)=> setPassword(e.target.value)} ></Input>
+            <Input type='password' name='' required mode={user[0]} value={password} onChange={(e)=> {
+              setPassword(e.target.value)
+              setError('')
+              if(password.length<8){
+                setError('please enter Password >= 8 characters')
+              }else{
+                setError('')
+
+              }
+            }} ></Input>
             <Label mode={user[0]}>Password</Label>
           </UserBox>
+          <p>{errorMsg}</p>
           <A  type='submit' >
             <SpanT></SpanT>
             <SpanR></SpanR>
